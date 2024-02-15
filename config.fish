@@ -4,7 +4,7 @@
 #
 fish_add_path "/opt/homebrew/bin/" # brew
 fish_add_path "/usr/local/bin/"    # aws
-
+fish_add_path "/Users/isak/.cargo/bin"       # cargo
 #
 # THEME
 #
@@ -56,19 +56,23 @@ abbr --add make make SHELL=/bin/zsh
 # keyboard shenanigans
 function kc
     set -Ux COLEMAK true
+    cp  /Users/isak/Library/Application\ Support/lazygit/config_colemak.yml /Users/isak/Library/Application\ Support/lazygit/config.yml
 end
 
 function kq
     set -e COLEMAK 
+    cp  /Users/isak/Library/Application\ Support/lazygit/config_qwerty.yml /Users/isak/Library/Application\ Support/lazygit/config.yml
 end
 
 # app configuration
 set HOMEBREW_EDITOR "nvim"
+set ESLINT_D_LOCAL_ESLINT_ONLY true
 
 # abbreviations
 abbr --add lg lazygit
-abbr --add toc cd ~/.config
-abbr --add ton cd ~/.config/nvim/lua/user
+abbr --add toc z ~/.config
+abbr --add ton z ~/.config/nvim/lua/user
+
 
 #
 # K9S
@@ -236,9 +240,6 @@ function __k9s_prepare_completions
     set -l nospace (math (math --scale 0 $directive / $shellCompDirectiveNoSpace) % 2)
     set -l nofiles (math (math --scale 0 $directive / $shellCompDirectiveNoFileComp) % 2)
 
-    __k9s_debug "nospace: $nospace, nofiles: $nofiles"
-
-    # If we want to prevent a space, or if file completion is NOT disabled,
     # we need to count the number of valid completions.
     # To do so, we will filter on prefix as the completions we have received
     # may not already be filtered so as to allow fish to match on different
@@ -312,12 +313,19 @@ complete -k -c k9s -n '__k9s_requires_order_preservation && __k9s_prepare_comple
 # ALZA
 #
 
+# Ruby
+status --is-interactive; and rbenv init - fish | source
+
+# Android Studio
+set ANDROID_HOME "/Users/brandon/Library/Android/sdk"
+
 # navigation
-abbr --add tol  cd ~/alza/landing-page
-abbr --add tos  cd ~/alza/alza-server
-abbr --add tom  cd ~/alza/alza-mobile
+abbr --add tol  z ~/alza/landing-page
+abbr --add tos  z ~/alza/alza-server
+abbr --add tom  z ~/alza/alza-mobile
 
 # aws shenanigans
+set AWS_PROFILE mfa
 
 function mfa
     # Replace this with whatever you labeled your key with in ykman
