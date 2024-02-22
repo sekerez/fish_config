@@ -69,10 +69,13 @@ set HOMEBREW_EDITOR "nvim"
 set ESLINT_D_LOCAL_ESLINT_ONLY true
 
 # abbreviations
+abbr --add n nvim
+abbr --add y yarn
 abbr --add lg lazygit
-abbr --add toc z ~/.config
-abbr --add ton z ~/.config/nvim/lua/user
+abbr --add rel source ~/.config/fish/config.fish
 
+# Zoxide
+zoxide init fish | source
 
 #
 # K9S
@@ -318,11 +321,6 @@ status --is-interactive; and rbenv init - fish | source
 
 # Android Studio
 set ANDROID_HOME "/Users/brandon/Library/Android/sdk"
-
-# navigation
-abbr --add tol  z ~/alza/landing-page
-abbr --add tos  z ~/alza/alza-server
-abbr --add tom  z ~/alza/alza-mobile
 
 # aws shenanigans
 set AWS_PROFILE mfa
