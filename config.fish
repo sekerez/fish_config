@@ -71,6 +71,8 @@ set ESLINT_D_LOCAL_ESLINT_ONLY true
 # abbreviations
 abbr --add n nvim
 abbr --add y yarn
+abbr --add e eza
+abbr --add tf terraform
 abbr --add lg lazygit
 abbr --add rel source ~/.config/fish/config.fish
 
