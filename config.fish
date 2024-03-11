@@ -42,7 +42,7 @@ end
 
 # bash/zsh compatibility shenanigans
 set -Ux fish_enable_globbing
-abbr --add make make SHELL=/bin/zsh
+abbr --add m make SHELL=/bin/zsh
 
 # function zsh
 #     if test (count $argv) -eq 1; and string match --regex '\.sh$' $argv[1]
@@ -72,6 +72,7 @@ set ESLINT_D_LOCAL_ESLINT_ONLY true
 abbr --add n nvim
 abbr --add y yarn
 abbr --add e eza
+abbr --add el 'eza -l'
 abbr --add tf terraform
 abbr --add lg lazygit
 abbr --add rel source ~/.config/fish/config.fish
