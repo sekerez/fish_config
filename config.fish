@@ -42,7 +42,7 @@ end
 
 # bash/zsh compatibility shenanigans
 set -Ux fish_enable_globbing
-abbr --add m make SHELL=/bin/zsh
+abbr --add m make 
 
 # function zsh
 #     if test (count $argv) -eq 1; and string match --regex '\.sh$' $argv[1]
@@ -68,10 +68,16 @@ end
 set HOMEBREW_EDITOR "nvim"
 set ESLINT_D_LOCAL_ESLINT_ONLY true
 
+
+
+# set NVIM_LISTEN_ADDRESS=/tmp/nvimsocket  # replace with your server name
+
 # abbreviations
 abbr --add n nvim
 abbr --add y yarn
 abbr --add e eza
+abbr --add b bat
+abbr --add cat bat
 abbr --add el 'eza -l'
 abbr --add tf terraform
 abbr --add lg lazygit
@@ -355,10 +361,10 @@ function reset-aws
     set AWS_SESSION_TOKEN (echo $AWS_CREDS | jq -r '.[].SessionToken')
     set AWS_TOKEN_EXPIRATION (echo $AWS_CREDS | jq -r '.[].Expiration')
 
-    set -x AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
-    set -x AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
-    set -x AWS_DEFAULT_REGION $AWS_DEFAULT_REGION
-    set -x AWS_SESSION_TOKEN $AWS_SESSION_TOKEN
+    set -gx AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
+    set -gx AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
+    set -gx AWS_DEFAULT_REGION $AWS_DEFAULT_REGION
+    set -gx AWS_SESSION_TOKEN $AWS_SESSION_TOKEN
 
     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile mfa
     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile mfa 
