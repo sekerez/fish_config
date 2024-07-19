@@ -5,6 +5,8 @@
 fish_add_path "/opt/homebrew/bin/" # brew
 fish_add_path "/usr/local/bin/"    # aws
 fish_add_path "/Users/isak/.cargo/bin"       # cargo
+fish_add_path "/Users/isak/.local/bin"       # pip
+fish_add_path "/Users/isak/code/roc_nightly-macos_apple_silicon-2024-05-27-9fcd5a3fe88/"
 #
 # THEME
 #
@@ -52,6 +54,15 @@ abbr --add m make
 #     end
 # end
 
+# yazi
+function yy
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
 
 # keyboard shenanigans
 function kc
@@ -65,10 +76,9 @@ function kq
 end
 
 # app configuration
-set HOMEBREW_EDITOR "nvim"
-set ESLINT_D_LOCAL_ESLINT_ONLY true
-
-
+set -x HOMEBREW_EDITOR "nvim"
+set -x KUBE_EDITOR "nvim"
+set -x ESLINT_D_LOCAL_ESLINT_ONLY true
 
 # set NVIM_LISTEN_ADDRESS=/tmp/nvimsocket  # replace with your server name
 
@@ -81,6 +91,7 @@ abbr --add cat bat
 abbr --add el 'eza -l'
 abbr --add tf terraform
 abbr --add lg lazygit
+abbr --add bp bpython
 abbr --add rel source ~/.config/fish/config.fish
 
 # Zoxide
@@ -373,3 +384,6 @@ function reset-aws
 
     echo "Tokens generated and saved to this terminal session. Tokens will expire on $AWS_TOKEN_EXPIRATION"
 end
+
+# Created by `pipx` on 2024-07-07 00:11:23
+set PATH $PATH /Users/isak/.local/bin
